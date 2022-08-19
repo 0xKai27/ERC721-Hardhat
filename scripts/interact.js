@@ -24,8 +24,9 @@ async function main() {
     const contractOwner = signers[0].address;
     const initialMintCount = 10; // Number of NFTs to mint
     let initialMint = [];
-    for (let i = 1; i <= initialMintCount; i++) { // tokenId to start at 1
-        await nonFunToken.mintCollectionNFT(contractOwner, i);
+    for (let i = 1; i <= initialMintCount; i++) {
+        let tx = await nonFunToken.mintCollectionNFT(signers[0].address, i.toString());
+        await tx.wait(); // wait for this tx to finish to avoid nonce issues
         initialMint.push(i.toString());
     }
     console.log(`${symbol} NFT with tokenIds ${initialMint} and minted to: ${contractOwner}\n`);
