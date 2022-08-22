@@ -123,6 +123,10 @@ describe('NonFunToken', function () {
         await this.collectorContract["safeTransferFrom(address,address,uint256)"](this.contractOwner, this.collector, this.initialMint[i]);
     }
     expect(await this.nonFunToken.balanceOf(this.collector)).to.equal(this.initialMint.length.toString());
-  })
+  });
+
+  it('Only allows contractOwner to mint NFTs', async function () {
+    await expect (this.collectorContract.mintCollectionNFT(this.collector, "100")).to.be.reverted;
+  });
 
 });
