@@ -8,7 +8,7 @@ async function main() {
     const signers = await ethers.getSigners();
     const contractOwner = signers[0].address;
 
-    // Mint new NFTs from the collection using custom function mintCollectionNFT()
+    // Transfer tokenId 1 to another account
     console.log(`Transferring NFT...`)
     const recipient = "YOUR OWN ALTERNATE ACCOUNT HERE";
     const tokenId = "1";
